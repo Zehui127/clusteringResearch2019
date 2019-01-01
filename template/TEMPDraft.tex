@@ -1,0 +1,122 @@
+
+\documentclass{uonmathreport}
+
+% this allows one to include .jpg etc figures using pdflatex
+% change the optional argument if you use dvips or others
+\usepackage[pdftex]{graphicx}
+% other packages that maybe of use include:
+% hyperref, amsthm, xy, todonotes, showkeys, ...
+
+% change to \PJS or \DIS or \HGDIS (for BSc and MPhil)
+% or \MSc (for all Msc dissertations)
+\PJA
+
+% adjust the following
+\title{A quantitative approach to Consistency Theorem in Clustering}
+\author{Zehui Li}
+\academicyear{2018/19}
+\supervisor{Dr. Yves van Gennip}
+
+% the following are irrelevant for Msc:
+\assessmenttype{Review} % or Investigation
+\projectcode{XX P99}
+
+
+% gives double-spacing
+\linespread{1.6}
+% the margins are set automatically. Do not make them smaller.
+
+% put your own definitions and shorthands here
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+% Table of contents
+\setcounter{tocdepth}{2}  % this will list subsections, but not subsubsections
+\tableofcontents 
+\newpage
+
+\section{Introduction} \label{sec:intro}
+Clustering analysis can be defined as a process of segmenting the data points into several subsets, or clusters, with the goal of making the data points within a cluster to be similar to each other, while the data points in distinct clusters to be different. Clustering has been widely used in many fields, such as pattern recognition, bio-informatics and image processing, however, most of the study toward the uniform notion of clustering only stop at the very general level. The algorithms to achieve the clustering task are called clustering algorithm: depending on the definition of the clusters and the way to find the clusters, these clustering algorithms differ from each other significantly. In 2003, Kleinberg \cite{Kleinberg} published a highly influential paper, in which he set up a general framework to study clustering algorithms as a whole, and proposed three properties that any clustering algorithms could have.
+\newline
+
+\noindent
+Clustering algorithms fall into three categories \cite{esl}: combinatorial algorithms, mixture modelling, and model seeking, the algorithms in each category follows different underlying principal. The advantage of Kleinberg's framework is that it can be applied to all these clustering algorithms regardless of these principal. The core of the framework - three properties proposed by Kleinberg - are called scale invariance, richness and consistency respectively. Scale invariance states that if the distance(dissimilarity) between the data points is multiplied by a positive number, the clustering algorithm should partition the data into the same clusters as before. Richness requires that for any given partition of the data points, it will be possible to come up with a pair wise distance between the data points, so that the clustering algorithm can produce the given partition. Finally, a clustering algorithm satisfy the consistency theorem if we decrease distances between the data points within a cluster, increase the distance between the cluster, the algorithm should produce the same partition. The most important conclusion from Kleinberg's paper is that there is no clustering algorithm which could satisfy three properties at the same time.
+
+Following the impossibility theorem proposed by Kleinberg, numerous relaxation methods on the axiomatic system are proposed in recent years. In particular, relaxation of consistency theorem is the focus of this paper. The consistency theorem proposed by Kleinberg, while reasonable and simple, it give a relative strict restriction on clustering algorithms - it require the clustering algorithm to give the same partition results even when the data set is perturbed profoundly (we will explain why this theorem is not sensible in more details in the following section). In this paper, we start from reviewing the work of Kleinberg, adding the missing proof to statements made in his paper, and do simulations on the computer to show the validity of these statements. The rest of the paper will focus on the study of consistency theorem - we come up with a quantitative framework to investigate the consistency property of clustering algorithm. and identify the highly separable distribution of partition results given legitimate perturbation. Finally, we tried several machine learning method to capture the relation between the extend of perturbation and change of partition results. It turns out the methods can capture the model with a very high accuracy and f-measure. At the end of the paper, we try to construct a quantity to measure the extend of perturbation and explore correlation between the the measurement and the change of partition.
+\subsection{Related work} \label{subsec:Related Work}
+
+\subsection{Our contribution} \label{subsec:Our contribution}
+
+
+\section{Review of Kleiberg's work} \label{sec:background}
+This section begins by introducing the mathematical notations used for clustering, and give the formal definition of scale invariance, richness and consistency theorem. After having these definition/knowledge in mind, we will move on to prove three statements about a very simple clustering algorithm - single linkage. Then we will present a process of showing the scale invariance property using computer simulation(in python). Finally, we will discuss why consistency theorem  is a more strict restriction compared to the others, Which gives us motivation to explore the ways to change consistency theorem.
+\subsection{Priliminaries} \label{subsec:priliminaries}
+Every clustering algorithm can be denoted by a ``clustering function" $f$, the input of this function is a set $S$ of $n$ data points and the pair wise distances among them. Each points in set $S$ is represented by a integer, so $S = \{1,2,3,...,n\}$ with $n>=2 $. There are multiple ways to represent the pairwise distances, for example, for $S = \{1,2,3,...,N\}$, a $N*N$ distance matrix can be used to represent the distances, in which each Entry $(i,j)$ refer the distance between points $i$ and $j$. However, instead of using the distance matrix, we define a \textit{distance function} $d$ to denote
+
+
+\subsection{Missing Proof} \label{subsec:Related Work}
+\begin{description}
+  \item[$\bullet$] Work of Kleinberg: three theorems
+  \item[$\bullet$] Recent Works around Kleinberg's theorems and Refined Consistency theorem
+  \item[$\bullet$] (Potentially) SVM and Decision Tree model?
+\end{description}
+\subsection{Simulation} \label{subsec:Our contribution}
+\begin{description}
+  \item[$\bullet$] come up with quantitative framework to investigate the consistency theorem of clustering algorithm
+  
+  \item[$\bullet$] Identify the highly separable distribution of rand index score for clustering results
+\end{description}
+\subsection{Why did the consistent theorem} \label{subsec:Our contribution}
+\section{Missing proof from the Kleinberg's Work} \label{sec:Missing proof}
+
+
+
+\section{Framework} \label{sec:framework}
+
+\subsection{Generate data points by perturbation} \label{subsec:blue}
+
+\subsection{Measurement of partition result} \label{subsubsec:red}
+
+\begin{description}
+  \item[$\bullet$] Rand Index and other measurements
+\end{description}
+
+
+
+\section{Classification with SVM and other methods} \label{sec:Classification}
+
+
+
+\section{Conclusions} \label{sec:conclusions}
+
+
+
+\newpage
+
+\appendix
+
+\section{Raw data} \label{app:rawdata}
+
+Material that needs to be included but would distract from the main
+line of presentation can be put in appendices.
+Examples of such material are raw
+data, computing codes and details of calculations.
+
+
+\section{Calculations for section \ref{sec:my1}} \label{app:calculations}
+
+In this appendix we verify equation \eqref{eq:myeq1}.
+
+\newpage
+
+\bibliographystyle{unsrt}
+\bibliography{References}
+
+\end{document}

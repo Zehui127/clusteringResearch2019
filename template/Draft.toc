@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Introduction}{4}
+\contentsline {section}{\numberline {2}MathBackground}{5}
+\contentsline {subsection}{\numberline {2.1}Related Work}{5}
+\contentsline {subsection}{\numberline {2.2}Our contribution}{5}
+\contentsline {section}{\numberline {3}Missing proof from the Kleinberg's Work}{5}
+\contentsline {section}{\numberline {4}Framework}{5}
+\contentsline {subsection}{\numberline {4.1}Generate data points by perturbation}{5}
+\contentsline {subsection}{\numberline {4.2}Measurement of partition result}{5}
+\contentsline {section}{\numberline {5}Classification with SVM and other methods}{5}
+\contentsline {section}{\numberline {6}Conclusions}{5}
+\contentsline {section}{\numberline {A}Raw data}{6}
+\contentsline {section}{\numberline {B}Calculations for section \G@refundefinedtrue \text {\normalfont \bfseries ??}\GenericWarning { }{LaTeX Warning: Reference `sec:my1' on page 6 undefined}}{6}

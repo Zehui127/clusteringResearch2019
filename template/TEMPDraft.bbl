@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+
+\bibitem{Kleinberg}
+Jon~M Kleinberg.
+\newblock An impossibility theorem for clustering.
+\newblock In {\em Advances in neural information processing systems}, pages
+  463--470, 2003.
+
+\bibitem{esl}
+Jerome Friedman, Trevor Hastie, and Robert Tibshirani.
+\newblock {\em The elements of statistical learning}, volume~1.
+\newblock Springer series in statistics New York, NY, USA:, 2001.
+
+\end{thebibliography}

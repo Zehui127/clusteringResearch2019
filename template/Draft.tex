@@ -1,0 +1,215 @@
+
+\documentclass{uonmathreport}
+
+% this allows one to include .jpg etc figures using pdflatex
+% change the optional argument if you use dvips or others
+\usepackage[pdftex]{graphicx}
+
+% other packages that maybe of use include:
+% hyperref, amsthm, xy, todonotes, showkeys, ...
+
+% change to \PJS or \DIS or \HGDIS (for BSc and MPhil)
+% or \MSc (for all Msc dissertations)
+\PJA
+
+% adjust the following
+\title{A quantitative approach to Consistency Theorem in Clustering}
+\author{Zehui Li}
+\academicyear{2018/19}
+\supervisor{Dr. Yves van Gennip}
+
+% the following are irrelevant for Msc:
+\assessmenttype{Review} % or Investigation
+\projectcode{XX P99}
+
+
+% gives double-spacing
+\linespread{1.6}
+% the margins are set automatically. Do not make them smaller.
+
+% put your own definitions and shorthands here
+\newcommand{\ZZ}{\mathbb{Z}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+% Table of contents
+\setcounter{tocdepth}{2}  % this will list subsections, but not subsubsections
+\tableofcontents 
+\newpage
+
+\section{Introduction} \label{sec:intro}
+Clustering analysis can be defined as a process of segmenting the data points into several subsets, or clusters, with the goal of making the data points within a cluster to be similar to each other, while the data points in distinct clusters to be different. Clustering has been widely used in many fields, such as pattern recognition, bio-informatics and image processing, however, most of the study toward the uniform notion of clustering only stop at the very general level. The algorithms to achieve the clustering task are called clustering algorithm: depending on the definition of the clusters and the way to find the clusters, these clustering algorithms differ from each other significantly. In 2002, Kleinberg \cite{Kleinberg} published a highly influential paper, in which he set up a general framework for clustering algorithms as a whole, and proposed three properties that the clustering algorithms could have.
+\newline
+
+\noindent
+Clustering algorithms fall into three categories \cite{esl}: combinatorial algorithms, mixture modelling, and model seeking, the algorithms in each category follows different underlying principal. The framework proposed by Kleinberg can be applied to all the clustering algorithm regardless of these principal. The core of the framework - three properties proposed by Kleinberg - are called scale invariance, richness and consistency respectively. Scale invariance states that if the distance(dissimilarity) between the data points is multiplied by a positive number, the clustering algorithm should partition the data into the same clusters as before. Richness requires that for any given partition of the data points, it will be possible to come up with a pair wise distance between the data points, so that the clustering algorithm can produce the given partition. Finally, a clustering algorithm is said to satisfy the consistency theorem if we perturb the data points in the following way: pair wise distances within a cluster are decreased, and pair wise distances between the cluster is increased, the algorithm should produce the same partition. The most important conclusion from Kleinberg's paper is that there is no clustering algorithm satisfying three properties at the same time. 
+
+
+\section{MathBackground} \label{sec:background}
+
+
+\subsection{Related Work} \label{subsec:Related Work}
+\begin{description}
+  \item[$\bullet$] Work of Kleinberg: three theorems
+  \item[$\bullet$] Recent Works around Kleinberg's theorems and Refined Consistency theorem
+  \item[$\bullet$] (Potentially) SVM and Decision Tree model?
+\end{description}
+\subsection{Our contribution} \label{subsec:Our contribution}
+\begin{description}
+  \item[$\bullet$] come up with quantitative framework to investigate the consistency theorem of clustering algorithm
+  
+  \item[$\bullet$] Identify the highly separable distribution of rand index score for clustering results
+\end{description}
+
+\section{Missing proof from the Kleinberg's Work} \label{sec:Missing proof}
+
+
+
+\section{Framework} \label{sec:framework}
+
+\subsection{Generate data points by perturbation} \label{subsec:blue}
+
+\subsection{Measurement of partition result} \label{subsubsec:red}
+
+\begin{description}
+  \item[$\bullet$] Rand Index and other measurements
+\end{description}
+
+
+
+\section{Classification with SVM and other methods} \label{sec:Classification}
+
+
+
+\section{Conclusions} \label{sec:conclusions}
+
+
+
+\newpage
+
+\appendix
+
+\section{Raw data} \label{app:rawdata}
+
+Material that needs to be included but would distract from the main
+line of presentation can be put in appendices.
+Examples of such material are raw
+data, computing codes and details of calculations.
+
+
+\section{Calculations for section \ref{sec:my1}} \label{app:calculations}
+
+In this appendix we verify equation \eqref{eq:myeq1}.
+
+\newpage
+
+\begin{thebibliography}{99} % alternatively use BibTeX
+
+
+\bibitem{esl}
+Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. The elements of statistical learning. Vol. 1. No. 10. New York, NY, USA:: Springer series in statistics, 2001.
+
+
+
+\bibitem{Kleinberg}
+  J. M. Kleinberg.
+ \emph{An impossibility theorem for clustering}.
+ In Advances in Neural Information Processing Systems, pages 463–470, 2002. 
+
+\bibitem{alling-greenleaf}
+N.~L. Alling and N.~Greenleaf,
+{\it Foundations of the Theory of Klein Surfaces\/},
+Lecture Notes in Mathematics Vol.~219
+(Springer, Berlin, 1971).
+
+\bibitem{barrett-dawe}
+J.~W. Barrett and R.~A. Dawe Martins,
+``Non-commutative geometry and the standard model vacuum'',
+{\it J. Math.\ Phys.\ \bf 47}, 052305 (2006).
+(arXiv:hep-th/0601192)
+
+\bibitem{bott-tu}
+R.~Bott and L.~W. Tu,
+{\it Differential Forms in Algebraic Topology\/}
+(Springer, New York, 1982).
+
+\bibitem{dewitt-can}
+B.~S. DeWitt,
+``Quantum theory of gravity. I. The canonical theory'',
+{\it Phys.\ Rev.\ \bf 160}, 1113--1148
+(1967).
+
+\bibitem{giulini-thesis} pictures
+D.~Giulini,
+``3-manifolds in canonical quantum gravity'',
+PhD Thesis,
+University of Cambridge (1990).
+
+\bibitem{hatcher}
+A.~Hatcher,
+{\it Algebraic Topology\/}
+(Cambridge University Press, Cambridge, 2002),
+Proposition 1.40 and Exercise 1.3.24.
+
+\bibitem{haw-ell}
+S.~W. Hawking and G.~F.~R. Ellis,
+{\it The Large Scale Structure of Space-Time\/}
+(Cambridge University Press, Cambridge, 1973).
+
+\bibitem{krasnov-louko}
+K.~Krasnov and J.~Louko,
+``$\mathrm{SO}_0(1,d+1)$ Racah coefficients: Type I representations'',
+{\it J. Math.\ Phys.\ \bf 47}, 033513 (2006).
+(arXiv:math-ph/0502017)
+
+\bibitem{langlois-thesis}
+P.~Langlois,
+``Imprints of spacetime topology in the Hawking-Unruh effect'',
+PhD Thesis, University of Nottingham (2005).
+(arXiv: gr-qc/0510127)
+
+\bibitem{poisson-livrev}
+E.~Poisson,
+``The motion of point particles in curved spacetime'',
+{\it Living Rev.\ Relativity \bf 7} 6 (2004),
+URL : \texttt{http://www.livingreviews.org/lrr-2004-6} (cited on 31 August 2006).
+(arXiv: gr-qc/0306052)
+
+\bibitem{poisson-gr17}
+E.~Poisson,
+``The gravitational self-force'',
+in
+{\it Proceedings of the
+17th International Conference on General
+Relativity and Gravitation\/} (Dublin, Ireland, July 18--23, 2004),
+edited by
+P.~Florides, B.~Nolan and A.~Ottewill
+(World Scientific, Singapore, 2005) 119--141.
+(arXiv:gr-qc/0410127)
+
+\bibitem{wheeler-geon}
+J.~A. Wheeler,
+``Geons'',
+{\it Phys.\ Rev.\ \bf 97}, 511--536
+(1955).
+
+\bibitem{wolf}
+J.~A. Wolf,
+{\it Spaces of Constant Curvature\/},
+5th edition
+(Publish or Perish, Wilmington, 1984).
+
+
+\bibitem{ligo-site}
+Website \texttt{http://www.ligo.caltech.edu/},
+visited 14 August 2007.
+
+\end{thebibliography}
+
+\end{document}

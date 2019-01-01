@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {1}Introduction}{4}
+\contentsline {subsection}{\numberline {1.1}Related work}{5}
+\contentsline {subsection}{\numberline {1.2}Our contribution}{5}
+\contentsline {section}{\numberline {2}Review of Kleiberg's work}{5}
+\contentsline {subsection}{\numberline {2.1}Priliminaries}{6}
+\contentsline {subsection}{\numberline {2.2}Missing Proof}{6}
+\contentsline {subsection}{\numberline {2.3}Simulation}{6}
+\contentsline {subsection}{\numberline {2.4}Why did the consistent theorem}{6}
+\contentsline {section}{\numberline {3}Missing proof from the Kleinberg's Work}{6}
+\contentsline {section}{\numberline {4}Framework}{6}
+\contentsline {subsection}{\numberline {4.1}Generate data points by perturbation}{6}
+\contentsline {subsection}{\numberline {4.2}Measurement of partition result}{6}
+\contentsline {section}{\numberline {5}Classification with SVM and other methods}{7}
+\contentsline {section}{\numberline {6}Conclusions}{7}
+\contentsline {section}{\numberline {A}Raw data}{8}
+\contentsline {section}{\numberline {B}Calculations for section \G@refundefinedtrue \text {\normalfont \bfseries ??}\GenericWarning { }{LaTeX Warning: Reference `sec:my1' on page 8 undefined}}{8}
