@@ -4,9 +4,15 @@
 % this allows one to include .jpg etc figures using pdflatex
 % change the optional argument if you use dvips or others
 \usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{float}
 % other packages that maybe of use include:
 % hyperref, amsthm, xy, todonotes, showkeys, ...
-
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[theorem]
 % change to \PJS or \DIS or \HGDIS (for BSc and MPhil)
 % or \MSc (for all Msc dissertations)
 \PJA
@@ -58,27 +64,115 @@ Following the impossibility theorem proposed by Kleinberg, numerous relaxation m
 \section{Review of Kleiberg's work} \label{sec:background}
 This section begins by introducing the mathematical notations used for clustering, and give the formal definition of scale invariance, richness and consistency theorem. After having these definition/knowledge in mind, we will move on to prove three statements about a very simple clustering algorithm - single linkage. Then we will present a process of showing the scale invariance property using computer simulation(in python). Finally, we will discuss why consistency theorem  is a more strict restriction compared to the others, Which gives us motivation to explore the ways to change consistency theorem.
 \subsection{Priliminaries} \label{subsec:priliminaries}
-Every clustering algorithm can be denoted by a ``clustering function" $f$, the input of this function is a set $S$ of $n$ data points and the pair wise distances among them. Each points in set $S$ is represented by a integer, so $S = \{1,2,3,...,n\}$ with $n>=2 $. There are multiple ways to represent the pairwise distances, for example, for $S = \{1,2,3,...,N\}$, a $N*N$ distance matrix can be used to represent the distances, in which each Entry $(i,j)$ refer the distance between points $i$ and $j$. However, instead of using the distance matrix, we define a \textit{distance function} $d$ to denote
+Every clustering algorithm can be denoted by a ``clustering function" $f$, the input of this function is a set $S$ consisting of $n$ data points and the pairwise distances among them. Each points in set $S$ is represented by a integer, so $S = \{1,2,3,...,n\}$ with $n>=2 $. One the other hand,there are multiple ways to represent the pairwise distances, for example, for $S = \{1,2,3,...,N\}$, a $N \times N$ distance matrix $M$ can be used to represent the distances, in which each entry $M_{i,j}$ refer to the distance between points $i$ and $j$. However, in our case, instead of using the distance matrix, we will use \textit{distance function} to denote the pairwise distances, which is more convenient when dealing with the theorems we defined below. \textit{Distance function} is define as a function $d$: $S \times S \rightarrow \mathbb{R}_{\ge 0}$ with symmetric property, thus, $d(i,j)$ equals $d(j,i)$ ,and both represent the distance between the points $i,j \in S$. In particular, $d(i,i) = 0$ for any $i\in S$. Distance function are not required to be \textit{metrics}, in other words, $d$ don't need to satisfy triangle inequality, but adding such restriction will not affect results we have below.
 
+Naturally, \textit{clustering function} $f$ take a data Set $S$ and a distance function $d$ as the inputs, and output the a partition $\Gamma$ of $S$, where $\Gamma = \{C_1,C_2,...,C_k\}$, each of the cluster $C_k$ contains some of the data points in $S$. For example, let $S = \{1,2,3,4,5\}$, then we could have $f(S,d)= \Gamma = \{ \{1,2\},\{3,4,5\} \}$. For simplicity, we can also write $f(S,d)$ as $f(d)$ without explicate referring to data set S. These three properties - scale invariance, richness and consistency - are all defined around this clustering function $f$.
 
-\subsection{Missing Proof} \label{subsec:Related Work}
-\begin{description}
-  \item[$\bullet$] Work of Kleinberg: three theorems
-  \item[$\bullet$] Recent Works around Kleinberg's theorems and Refined Consistency theorem
-  \item[$\bullet$] (Potentially) SVM and Decision Tree model?
-\end{description}
-\subsection{Simulation} \label{subsec:Our contribution}
-\begin{description}
-  \item[$\bullet$] come up with quantitative framework to investigate the consistency theorem of clustering algorithm
+\begin{definition}
+Scale-Invariance. $f$ satisfy Scale-Invariance $\iff$  For any given distance function $d$ and any $\alpha>0$, $f(d) = f(\alpha\cdot d)$
+\end{definition}
+
+Scale Invariance simply requires that the clustering algorithm don't rely on the fixed quantity to cluster the data set.
+
+\begin{definition}
+Richness.  $f$ satisfy Richness $\iff$ For any given partition $\Gamma$ of $S$, $\exists d$ such that $f(d) =\Gamma$
+\end{definition}
+
+This property is called richness, because the by feeding in the clustering algorithm different distance functions $d$, we can reach any possible partition of the given data set $S$. The third property is called consistency, and it contains more details than the first two. The basic idea of consistency is that, if we perturb the data in a desirable way, our algorithm should produce the same partition $\Gamma$. We first give a formal definition to the ``desirable perturbation", calling it $\Gamma$ \textit{-transformation}.
+\begin{definition}
+Given a partition $\Gamma=\{C_1,C_2,...,C_m\}$ on data set $S$, 
+$d'$ is a $\Gamma$ \textit{-transformation} of $d$ $\iff$ For any points $i,j\in C_k$, $d'(i,j)<=d(i,j)$; and if $i \in C_k, j\notin C_k$, $d'(i,j)>=d(i,j)$.
+\end{definition}
+
+It may seems a little messy at the first glance, but we can interpret $\Gamma$ \textit{-transformation} as a specific way to perturb the dataset. Suppose we have a data set at the beginning, then we apply a clustering algorithm on this data set, and obtain several clusters. We will squash the points within the same cluster together, and move the points in one cluster away from the other clusters. The resulting distance, will be $d'$ in our definition above. And consistency property simply require that, if we apply the clustering algorithm on the perturbed version of data set, we will still have the same points assigned to the same clusters.
+
+\begin{definition}
+Consistency. f satisfy consistency $\iff$ Given that $d'$ is $\Gamma \textit{-transformation}$ of distance function $d$, $f(d) = f(d')$
+\end{definition}
+
+Kleinberg's framework starts from abstraction: it abstracts clustering algorithm into a clustering function $f$, then defines several properties to analyse the function. Once we have this framework, there are two direction to continue the study: the first is to come down to specific algorithms and study whether or not this clustering algorithm satisfy these properties; the other way is to modify the existing properties or add new properties into this framework. Both approaches are mentioned in this paper: We study \textbf{single linkage} clustering algorithm in the next section, then the rest of the paper will seek ways to modify the \textbf{consistency} theorem.
+\subsection{Missing Proofs for single linkage} \label{subsec:Related Work}
+
+Single linkage is a bottom-up hierarchical clustering algorithm, it begin with each clusters representing a single group, then at each step, it will merge the two ``nearest" (with least dissimilar) clusters into a single cluster, where dissimilar is defined in following manner \cite{esl}. The algorithm will terminate until some termination condition is satisfied.
+\begin{definition}
+Let G,H represent two clusters, d is the distance function of the data set, then dissimilar $d_{SL}$ is defined as:
+$d_{SL}(G,H) = \min_{i\in G,i'\in H}d_{ii'} $
+\end{definition}
+
+An alternative way to describe single linkage is to treat clustering as a Graphs Construction process \cite{christopher2008introduction}. Tuple $(S,d)$ naturally form a complete Graph $G(S,d)$, whose node set is  the data set $S$, and weigh of edges between nodes $i,j \in S$ is the distance function $d_{ij}$.Single linkage will first order the edges in the non-decreasing order, then for each iteration, it will take one edge from the ordered list,then terminate when the termination condition is satisfies. At this point, all the picked edges form a new partially connected graph $G_{c}$, where the node set is the still the data set, but edge set is a set formed by all picked edges. We will use this graph perspective in the following proofs.
+
+By controlling the "termination conditions", we can construct three single linkage algorithms, such that each of the them can satisfy two properties out of Scale-invariance, Richness and Consistency. Three stop conditions are listed below\cite{Kleinberg}.
+\begin{itemize}
+\item \textit{k-cluster termination condition}. Stop adding edges when the partially connected graph $G_{c}$ consists of k connected components.
   
-  \item[$\bullet$] Identify the highly separable distribution of rand index score for clustering results
-\end{description}
-\subsection{Why did the consistent theorem} \label{subsec:Our contribution}
-\section{Missing proof from the Kleinberg's Work} \label{sec:Missing proof}
+\item \textit{distance-r termination condition.} Only add edges of weight at most r.
+  
+\item \textit{scale-$\alpha$ termination condition.} Let $\rho^*$ denote the maximum pairwise distance; i.e $\rho^* = \max_{i,j}d(i,j)$. Only add edges of weight at most $\alpha\rho^{*}$.
+\end{itemize}
+
+Each of the termination condition is a trade-off between three properties: for example, single linkage with \textit{distance-r} termination condition has a built-in scale, so it will not satisfy the scale-invariance property. But this algorithm indeed satisfy Richness and Consistency. Similarly, we have the following theorem:
+\begin{theorem}
+\label{first theorem}
+For any $\alpha>=1$, and any $n>=3$, single-linkage with the scale-$\alpha$ termination condition satisfies Scale-Invariance and Richness.
+\end{theorem}
+\begin{theorem}
+For any $k>=1$, and any $n>=k$, single-linkage with the k-cluster termination condition satisfies Scale-Invariance and Consistency.
+\end{theorem}
+\begin{theorem}
+For any $r>0$, and any $n>=2$, single-linkage with the distance-r termination condition satisfies Richness and Consistency.
+\end{theorem}
+
+Here we present the proof of \textit{Theorem 2.1} and enclosed the proof of \textit{Theorem 2.2} and \textit{2.3} in the appendix A
+
+\begin{proof}
+\textit{theorem \ref{first theorem}}
+
+\noindent Given data set $S$ and distance function $d$, let $\rho^* = \max_{i,j}d(i,j)$, and $f$ be the single-linkage with scale-$\alpha$ termination condition. 
+
+Let's first prove that $f$ satisfy Scale-invariance property. Assume another distance function $d'$, and $d'$ satisfy that for $\forall$ $i,j \in S, d'(i,j)=\beta d(i,j)$, where $\beta >0$. Let $\Gamma = f(S,d)$, $\Gamma' = f(S,d')$ respectively. If we can show that $\Gamma = \Gamma'$, we will prove $f$ satisfy Scale-invariance. Following the Graph interpretation of single-linkage, the resulting partition can be represented by a partially connected Graph $G_c(S,E)$, where the node set is data set $S$, and edge set $E$ consists of picked edges. Let $G_c(S,E) = \Gamma = f(S,d)$, and $G_c'(S,E') = \Gamma' = f(S,d')$. Now, if we can prove that $G_c(S,E) = G_c'(S,E')$, we are done. To prove $G_c' = G_c$, we only need to prove that edge set $E=E'$, because $G$ and $G'$ have the same node set.
+
+Let's look inside $E$ and $E'$: Due to ``scale-$\alpha$" termination condition, edge Set $E$ will contain all the edges which has weights smaller than $\alpha\rho^*$. Formally, $d(e_i) <=\alpha\rho^*$, for $e_i\in E$; $d(e_j) > \alpha\rho^*$, for $e_j\notin E$. Similarly, $E'$ will only contain the edges which are smaller or equal to the ``threshold value", let's denote this value by $\rho_{2}^{*}$. So for $e_i \in E'$, $d'(e_i)<=\rho_{2}^{*}$, and for $e_j \notin E'$, $d'(e_j)>\rho_{2}^{*}$. But $d'(.) = \beta d(.)$ and $ \rho_{2}^{*} =  \max_{i,j}d'(i,j)= \max_{i,j}\beta d(i,j)=\beta \max_{i,j} d(i,j) =\beta\rho^*$. If we substitute the values of  $d'(e)$ and $\rho_{2}^{*}$ with $\beta d(e)$ and $\beta \rho^{*}$ in the inequality for $E'$, we will have $\beta d(e_i) <=\beta \alpha\rho^*$, for $e_i \in E'$, which is equivalent to the constraints for elements in $E$, thus $E'$ has the same elements as $E$, which indicate that $\Gamma = \Gamma'$, and we are done with the proof of Scale-invariance.
+
+The proof for richness much easier: Given a partition $\Gamma$, if we can construct a distance function $d$ such that $f(d) = \Gamma$, we are done. Let's assume we are given a partition $\Gamma = G_c(S,E)$, where $E = \{e_1,e_2,\ldots e_m\}$. To make $f$ produce such a edge set, we can define d as following: \[   
+d(e_i) = 
+     \begin{cases}
+       \alpha^2, &\quad i\in\{1,2,3,\ldots m\} \\
+       1, &\quad i\notin\{1,2,3,\ldots m\} \\
+     \end{cases}
+\]
+In this manner, $\rho^{*} = \max_{i,j}d(i,j) = 1$, because \textit{theorem 2.1} assumes $\alpha<1$. Let $f(d) = G(S,E_{new})$, $f$ will put all the elements which are smaller and equal to $\alpha \rho^{*} = \alpha$ into $E$. Because $d(e_i)= \alpha^2 < \alpha$, for $i = 1,2\ldots m$, we have $E_{new} = \{e_1,e_2\ldots e_m\}=E$ 
+\end{proof}
 
 
+In this proof, we show how to prove Scale-invariance and Richness. The way to prove Consistency is somewhat similar to Scale-invariance, it starts from treating the partition $\Gamma$ as a partially connected Graph $G_c(S,E)$, then use the property of $f$ and the relation between $d$ and $d'$ to build the equivalence of two edge set $E$ and $E'$. The details are put in Appendix A.
 
+
+\subsection{Why modify the consistency property?} \label{subsec: motivation for modifying consistency}
+Kleiberg's \textbf{impossibility theorem} states that it is impossible for any clustering algorithm to have three properties at the same time, in other words, it indicates that we shoud not have unrealistic expectation to have a ``perfect“ clustering algorithm, but are these three properties desirable? Following the discussion in the blog of Willians\cite{williams_2015}, we will argue that, consistency property doesn't really reflect our expectation to clustering algorithm.
+
+The idea of consistency theorem is that after we apply $\Gamma$-transformation to the data set, the clustering algorithm is not influenced by this perturbation, and can still produce the same partition results. As \textit{figure 1} illustrate, this property seem very intuitive at first glance: if we increase the distance between each cluster or squeezing the points within a cluster together, it should be more obvious to the algorithm that which points should be classified into the same group.
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=0.75\textwidth]{Paper_figure_1.png}
+ \end{center}
+ \caption{\textit{This is example of $\Gamma$-transformation for two dimensional data: After the transformation the data points in different clusters are moved away from each other, and the boundary between ``clusters" should be more clear than before.}}
+ \label{fig:bsd}
+\end{figure}
+
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=0.65\textwidth]{Paper_figure_2.png}
+ \end{center}
+ \caption{\textit{This is the example of $\Gamma$-transformation which results in changing the structure of the data: In (i), one of the clusters is pulling away from the other two clusters significantly. In (ii), for each of the cluster, we the shrink all the points together but leave one point out.}}
+ \label{fig:bsd}
+\end{figure}
+
+Despite this seemingly reasonable assumption that $\Gamma$-transformation always keep the structure of the data the same, actually, in many cases (as \textit{Figure 2} shows), $\Gamma$-transformation will create undesirable transformation, in which the perturbed version of data should be clustered differently. For example, in (i), suppose we move one cluster infinitely away from other clusters, obviously it is a legitimate $\Gamma$-transformation, but the resulting data should be partitioned into  two clusters. However, consistency theorem, if hold, will require the clustering algorithm to produce three clusters as before. Similarly, in (ii), for each cluster, without breaking the constraints of $\Gamma$-transformation, if we shrink all the points together, but leave one points out, it should be more reasonable to partition the data in the way shown in \textit{Figure 2}.
+
+These problems with consistency theorem motivate us to study the property of $\Gamma$-transformation, try to figure out in which case does $\Gamma$-transformation change the structure of the data set and in which case it does.
 \section{Framework} \label{sec:framework}
+It is very important to specify what we are studying here:
+
 
 \subsection{Generate data points by perturbation} \label{subsec:blue}
 
@@ -102,12 +196,8 @@ Every clustering algorithm can be denoted by a ``clustering function" $f$, the i
 
 \appendix
 
-\section{Raw data} \label{app:rawdata}
-
-Material that needs to be included but would distract from the main
-line of presentation can be put in appendices.
-Examples of such material are raw
-data, computing codes and details of calculations.
+\section{Remaining Proof for Single-linkage} \label{app:proof}
+In this appendix, we provide the proof for \textit{Theorem 2.2} and  \textit{Theorem 2.3}.
 
 
 \section{Calculations for section \ref{sec:my1}} \label{app:calculations}

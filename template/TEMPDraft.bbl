@@ -11,4 +11,13 @@ Jerome Friedman, Trevor Hastie, and Robert Tibshirani.
 \newblock {\em The elements of statistical learning}, volume~1.
 \newblock Springer series in statistics New York, NY, USA:, 2001.
 
+\bibitem{christopher2008introduction}
+D~Manning Christopher, Raghavan Prabhakar, and Schutza Hinrich.
+\newblock Introduction to information retrieval.
+\newblock {\em An Introduction To Information Retrieval}, 151(177):5, 2008.
+
+\bibitem{williams_2015}
+Alex Williams.
+\newblock Is clustering mathematically impossible, 2015.
+
 \end{thebibliography}
