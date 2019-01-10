@@ -8,6 +8,7 @@
 \usepackage[english]{babel}
 \usepackage{amsthm}
 \usepackage{float}
+\usepackage{hyperref}
 % other packages that maybe of use include:
 % hyperref, amsthm, xy, todonotes, showkeys, ...
 \newtheorem{definition}{Definition}[section]
@@ -91,7 +92,7 @@ Consistency. f satisfy consistency $\iff$ Given that $d'$ is $\Gamma \textit{-tr
 \end{definition}
 
 Kleinberg's framework starts from abstraction: it abstracts clustering algorithm into a clustering function $f$, then defines several properties to analyse the function. Once we have this framework, there are two direction to continue the study: the first is to come down to specific algorithms and study whether or not this clustering algorithm satisfy these properties; the other way is to modify the existing properties or add new properties into this framework. Both approaches are mentioned in this paper: We study \textbf{single linkage} clustering algorithm in the next section, then the rest of the paper will seek ways to modify the \textbf{consistency} theorem.
-\subsection{Missing Proofs for single linkage} \label{subsec:Related Work}
+\subsection{Missing Proofs for single linkage} \label{subsec:Single-linkage}
 
 Single linkage is a bottom-up hierarchical clustering algorithm, it begin with each clusters representing a single group, then at each step, it will merge the two ``nearest" (with least dissimilar) clusters into a single cluster, where dissimilar is defined in following manner \cite{esl}. The algorithm will terminate until some termination condition is satisfied.
 \begin{definition}
@@ -116,9 +117,11 @@ Each of the termination condition is a trade-off between three properties: for e
 For any $\alpha>=1$, and any $n>=3$, single-linkage with the scale-$\alpha$ termination condition satisfies Scale-Invariance and Richness.
 \end{theorem}
 \begin{theorem}
+\label{second theorem}
 For any $k>=1$, and any $n>=k$, single-linkage with the k-cluster termination condition satisfies Scale-Invariance and Consistency.
 \end{theorem}
 \begin{theorem}
+\label{third theorem}
 For any $r>0$, and any $n>=2$, single-linkage with the distance-r termination condition satisfies Richness and Consistency.
 \end{theorem}
 
@@ -169,22 +172,127 @@ The idea of consistency theorem is that after we apply $\Gamma$-transformation t
 
 Despite this seemingly reasonable assumption that $\Gamma$-transformation always keep the structure of the data the same, actually, in many cases (as \textit{Figure 2} shows), $\Gamma$-transformation will create undesirable transformation, in which the perturbed version of data should be clustered differently. For example, in (i), suppose we move one cluster infinitely away from other clusters, obviously it is a legitimate $\Gamma$-transformation, but the resulting data should be partitioned into  two clusters. However, consistency theorem, if hold, will require the clustering algorithm to produce three clusters as before. Similarly, in (ii), for each cluster, without breaking the constraints of $\Gamma$-transformation, if we shrink all the points together, but leave one points out, it should be more reasonable to partition the data in the way shown in \textit{Figure 2}.
 
-These problems with consistency theorem motivate us to study the property of $\Gamma$-transformation, try to figure out in which case does $\Gamma$-transformation change the structure of the data set and in which case it does.
-\section{Framework} \label{sec:framework}
-It is very important to specify what we are studying here:
+These problems with consistency theorem motivate us to study the property of $\Gamma$-transformation, try to figure out in which case does $\Gamma$-transformation change the structure of the data set.
+\section{Investigate the properties of $\Gamma$-transformation by Simulation} \label{sec:framework}
+\subsection{Our approach} \label{subsec:approach}
+We are taking a numerical approach to investigate how $\Gamma$-transformation change the structure of the data. The general idea is that suppose we have a data set, we first apply some clustering algorithm on this data set, which produce a partition $\Gamma$. Then, we apply $\Gamma$-transformation to this data set for numerous times, and each time we will obtain a different data set. For a clustering algorithm which doesn't satisfy consistency property, if we apply the algorithm to these data sets, it should produce different partition results. We want to figure out what kind of $\Gamma$-transformation will result in partitions which are the same as the partition $\Gamma$ . To decide whether two partition results are the same, we need have some ``measurement", which could measure the difference between two partition, we will discuss various criteria to measure this difference in the third sub-section.
+
+The implementation of these numerical analysis rely on the Python and several libraries including numpy, scikit-learn, etc. We enclose important part of code in Appendix B (The full lists of code can be found on my personal  \href{https://github.com/Zehui127/clusteringResearch2019}{github page}).
+
+\subsection{Generate data points by $\Gamma$-transformation} \label{subsec:blue}
+Clustering algorithms can be classified into two groups by the types of required inputs: for algorithms like k-means, we will need the specific coordinates of the every points in the data set, but for algorithm like single-linkage and k-medoids, they only need the distance functions as the input, then they can produce the partition results. To apply a $\Gamma$-transformation on the data set with specific coordinates will be very difficult(actually it is computational impossible on any personal computer even small workspace, when the data set become relatively big\footnote{Recall $\Gamma$-transformation require that we can only decrease the distance between the points within a cluster, and increase the distance between the point in different point. Suppose we have n points in the data set, then when we move one point, we will need to exam $n-1$ equations to make sure our movement satisfy all the inequality. On the other hand, if we are working on the distance matrix, we don't need to worry about these constraints}). So we restrict our scope to the algorithms like single-linkage and k-medoids, which don't need the coordinates. Then in this case, to apply a $\Gamma$-transformation, we simply modify the distance function following the constraints of $\Gamma$-transformation.
+
+With the scope restricted, a dataset containing $N$ data points can be denoted by a $N\times N$ distance matrix $X$, where $X_{i,j}$ refer to the distance between points $i$ and $j$, and it is symmetric matrix with diagonal elements equal to zero. Suppose we have a dataset $X$, a clustering function $f$, and $\Gamma = f(X)$. If we independently apply $\Gamma$-transformation to the dataset for $n$ time, we can obtain a set of distance matrices $D = \{X_1',X_2',\ldots , X_n'\}$, where each element $X_i'$ is the resulting distance matrix from a random $\Gamma$-transformation. Two things need to be noticed: First, every $X_i'$ is produced independently from $X$. Secondly, $\Gamma$-transformation from $X$ to $X_i'$ can make any changes to original distance matrix $X$, it is a completely random process. We enclose the python code of $\Gamma$-transformation in Appendix B, it is a function called \textbf{perturb\_distance\_matrix()}, which take the original distance matrix $X$ and partition $\Gamma$ as the input, and return a distance matrix produced from some random $\Gamma$-transformation.
+
+What is the use of these distances matrices? Well, each of these distance matrices are produced from a ``$\Gamma$-transformation"; Among these transformations, some of the them will change the structure of the original dataset, in which case we expect to see that $f(X_i')\neq \Gamma$, while in the case where the structure of the dataset is preserved, we will expect $f(X_i')= \Gamma$.  Our aim is to target these good $\Gamma$-transformations among $D$, then try to come up with some quantities or models to capture these good $\Gamma$-transformations in the unseen cases. To identify ``good $\Gamma$-transformations", we will apply $f$ to all the elements of distance matrices $D$, which results in a set of new partition $P = \{\Gamma_1',\Gamma_2' \ldots \Gamma_n' \}$, where $\Gamma_i = f(X_i')$. We want to find all $i\in \{1,2\ldots n\}$ such that $\Gamma_i' = \Gamma$, but how can we compare two partitions? We will look at this problem in next section.
+
+\subsection{Measure the difference between partition results} \label{subsubsec:red}
+The task here is to compare two partitions of the same dataset, many criteria, such as Jaccard index, Variation of Information distance \cite{meilua2003comparing} and Rand index, can be used to describe the difference between two partitions. All these criteria follow a similar idea: the difference between two clusters is defined in terms of the number of points, or pairs of points two partition disagree \cite{von2010clustering}. In this paper, we will use an variation of a simple criteria - \textbf{Adjusted rand index} , this criteria is based on Rand index, but normalized to have better property. Let's first define Rand index.
+
+Given a dataset of $n$ points $S = \{1,2\ldots n\}$ and two partition of $S$: $\Gamma=\{C_1,C_2\ldots \}$ and $\Gamma' = \{C_1',C_2'\ldots\}$, where $C_1,C_2\ldots$ and $C_1',C_2'\ldots\ $ are non-overlap subsets. 
+	\begin{itemize}
+\item Let $x =|S^*|$, where $S^*=\{(i,j)|i,j\in C_l$ and $i,j\in C_k' \}$
+  
+\item Let $y =|S^{**}|$, where $S^{**}=\{(i,j)|i\in C_{l_1},j\in C_{l_2}$ and $i\in C_{k_1}',j\in C_{k_2}' \} $
+\end{itemize}
+Rand Index, Rd, is defined as:
+\begin{equation}
+ Rd = \frac{x+y}{{n\choose 2}}
+\end{equation}
+${n\choose 2}$ is the total number of possible choices of pair. Rand index can be interpreted as the probability that $\Gamma$ and $\Gamma'$ will agree on a randomly chosen pair. The range of Rand index is $[0,1]$, when $Rd(\Gamma,\Gamma') =1$, $\Gamma$ and $\Gamma'$ are exactly the same, while $Rd(\Gamma,\Gamma') =0$ means two partition do not agree on any pair of points. However, Rand index is not often used directly, because it have two obvious drawbacks: For one, in practice, the value of Rand index is ususally in the range between $[0.5,1]$. Also, its baseline value can be high and does not take a constant value \cite{vinh2010information}. 
+
+Due to these reasons, \textbf{Adjusted rand index} is introduced, it is proposed in 1985\cite{hubert1985comparing}. Adjusted rand index basically is a normalized version of Rand index, it is given by following formula:
+\begin{equation}
+ \textrm{Adjusted Rand Index} =  \frac{\textrm{Rand Index}-\textrm{Expected Rand Index}}{\textrm{Maximum Rand Index}-\textrm{Expected Rand Index}}
+\end{equation}
+Expected Rand Index is calculated by assuming the generalized hypergeometric distribution of randomness, we will not go into the details of this distribution. But after this normalization operation, Adjusted Rand index will be a better measurement for the difference between two clusters, it is bounded above by 1 and only equals to 1 if two partition are exactly the same, and close to zero when we randomly label the data into clusters. Furthermore, in practice, the value of the Adjusted Rand Index will be evenly ranging from 0 to 1.
+
+In the simulation, we write our Rand Index function, but make use of the \textbf{Adjusted\_rand\_index()} function in sklearn library for efficiency purpose. Here is the graph showing the property of rand index and adjusted rand index.
+
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=0.4\textwidth]{adjusted.png}
+ \end{center}
+ \caption{\textit{We randomly generate 1000 pairs of partitions, then compute the Adjusted Rand Index and Rand Index for these pairs. It can be clearly seen that the value of Adjusted Rand Index is distributed across $[0,1]$, while Rand Index without Normalization concentrate on $[0.5,1]$}}
+ \label{fig:bsd}
+\end{figure}
 
 
-\subsection{Generate data points by perturbation} \label{subsec:blue}
-
-\subsection{Measurement of partition result} \label{subsubsec:red}
-
-\begin{description}
-  \item[$\bullet$] Rand Index and other measurements
-\end{description}
+\section{Simulation Results} \label{sec:red}
+Following the framework proposed in section \ref{subsec:blue}, below is the simulation we did for investigating the property of $\Gamma$-transformation: We start from the original dataset, represented by distance matrix $X$, then let $\Gamma = f(X)$, where $f$ is the selected clustering algorithm we want to study. Apply $\Gamma$-transformation on $X$ for multiple times to get the perturbed version of dataset $D = \{X_1',X_2'\ldots X_n'\}$. Applying $f$ to every element of $D$ will result in a set of partitions $P = \{f(X_1'),f(X_2')\ldots f(X_n')\}=\{\Gamma_1',\Gamma_2' \ldots \Gamma_n' \}$. Finally, we calculate corresponding Adjusted Rand Index(ARI) for each of these partitions $\{ARI(\Gamma_1',\Gamma),ARI(\Gamma_2',\Gamma)\ldots ARI(\Gamma_n',\Gamma)\}$. \textit{Table-1} present the psudo-code for the simulation steps.
+\subsection{Simulation for K-mediods} \label{subsec: kmediods}
 
 
+In the first experiment, $f$ is set to be \textbf{k-mediods}. We try $n=1000$, $n=10000$ and $20000$, \textit{Figure-4} shows the raw frequency of the Adjusted Rand Index in these cases, together with the Adjusted Rand Index under random perturbed data. Compared with the distribution of ARI upon random perturbed data which is the \textit{Figure-4}(a), the distribution of the ARI upon $\Gamma$-transformation clearly shows that $\Gamma$-transformation has the tendency to preserve the structure of the data. Even more remarkable, as $n \rightarrow \infty$, ARI tend to have a fixed \textbf{Probability Density Function}. In \textit{Figure-5}, We draw the density plot of the ARI when $n=10000,20000\ldots 70000$ (the density is estimated by the sum of multiple Gaussian distribution), and it shows that the density function tends to converge to the same function.
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=0.7\textwidth]{simulate1.png}
+ \end{center}
+ \caption{\textit{Histogram of Adjusted Rand Index(ARI) for K-mediods. $n$ distance matrices $\{X_1',X_2'\ldots X_n'\}$ are created from $X_{origin}$ by $\Gamma$-transformation, $Y$ are created from random perturbation. (b),(c)and (d) shows histogram of $ARI(f(X_j'),f(X_{origin}))$ when $n=1000,10000,20000$ respectively.
+(a) shows the histogram of $ARI(f(Y),f(X_{origin}))$ when $n =1000$.}}
+ \label{fig:bsd}
+\end{figure}
 
-\section{Classification with SVM and other methods} \label{sec:Classification}
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=0.7\textwidth]{simulate2.png}
+ \end{center}
+ \caption{\textit{We estimate the density function of $ARI(f(X_j'),f(X_{origin}))$ by the summing up Gaussian Distribution, this graph shows that as we increase the number of distance matrices, the density function converge to a ``true" density function.}}
+ \label{fig:bsd}
+\end{figure}
+
+\subsection{Simulation for Complete Linkage} \label{subsec: Complete-linkage}
+Complete-linkage is similar to Single-linkage Algorithm we discuss in the section \ref{subsec:Single-linkage}, it also take a bottom up approach - start from regarding each data points as a cluster, then merge two clusters with least dissimilarity\cite{christopher2008introduction}. But the dissimilarity is defined in following manner.
+\begin{definition}
+Let G,H represent two clusters, d is the distance function of the data set, then dissimilar $d_{SL}$ is defined as:
+$d_{SL}(G,H) = \max_{i\in G,i'\in H}d_{ii'} $
+\end{definition}
+Here we let $f$ be Complete-linkage with k-clusters termination condition, and go through the same procedure as we did in previous section. \textit{Figure-\ref{fig:single-linkage}} shows the histogram of the ARI when $n=1000$ and $4000$. Compared to the histogram of K-mediods, it has heavier tail at $ARI = 1$, which could be interpreted as an evidence for that Complete-linkage are ``more consistency".  We also try to estimate the probability density function of ARI, but this time, instead of using mixture Gaussian Distribution, we assume the density function has a Gamma-distribution, then use the data to estimate the parameter of it. \ref{fig:single-linkage2} shows the estimated graph.
+
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=0.7\textwidth]{simulate2_1.png}
+ \end{center}
+ \caption{\textit{Histogram of Adjusted Rand Index(ARI) for complete-linkage when $n=1000$ and $4000$ }}
+ \label{fig:single-linkage}
+\end{figure}
+
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=1\textwidth]{Complete-linkage-cdf.png}
+ \end{center}
+ \caption{\textit{Estimated density function and cumulated density function of $ARI$ for Complete linkage}}
+ \label{fig:single-linkage2}
+\end{figure}
+
+\subsection{Implication and limitation of the simulation} \label{subsec: simulationSum}
+There are two important observations we get from the simulation process. The first one is that Adjusted Rand Index(ARI) after $\Gamma$-transformation had a very heavy tail at $ARI=1$, which is consistent with our intuition for $\Gamma$-transformation - it shouldn't change the structure of data set. The second observation is that different clustering algorithms will have different ARI distribution, for K-mediods, it has two 	``peaks" at ARI = 1 and ARI = 0.4, while for Complete-linkage, distribution of ARI can be fitted relative good by Gamma distribution. 
+
+For Complete-linkage and K-mediods, $\Gamma$ transformation lead to a skewed distribution of ARI (The relative frequency of $ARI =1$ is higher than other value). Although we haven't tried all the clustering algorithm, it is reasonable to make the assumption that there are many other clustering algorithms satisfying this skewed distributed feature. So we formalize our assumption and state it as a refined version of consistency property, calling it \textbf{$\beta$-Partial Consistency}. 
+Given $0<=\beta<=1$, it is defined as following:
+\begin{definition}
+$\beta $-Partial Consistency. Clustering algorithm $f$ satisfy $\beta$-Partial Consistency $\iff$ Given $D=\{d_1',d_2'\ldots d_n'\}$ contains $n$ $\Gamma$-transformation of distance function $d$, as $n\rightarrow \infty$, there exists at least $\beta *n$ number of $d_i'\in D$ satisfying $f(d_i')=f(d)$ 
+\end{definition}
+Recall the original consistency property, it is actually a special case of $\beta $-Partial Consistency when $\beta = 1$. The original consistency property is a very strict one, only a small portion of clustering algorithm satisfy this property, but a wider range of clustering algorithms could satisfy $\beta$-Partial Consistency. From the simulation, we can see the potential existence of this property for \textbf{K-mediods} and \textbf{Complete-Linkage}. Figure-\ref{fig:single-linkage4} shows that the relative frequency of $ARI=1$ could tend to a fixed value as we increase the value of $n$.
+
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=1\textwidth]{Complete-linkage-cdf.png}
+ \end{center}
+ \caption{\textit{Change of the relative frequency of ARI = 1:Y-axis shows \textbf{relative frequency of} $1$ = $\frac{\textsl{Frequency of ARI}=1}{\textsl{Total number of cases}} $ for Complete-linkage algorithm, x-axis shows the value of n. As n increase, this value tend to a fixed value=0.78.}}
+ \label{fig:single-linkage4}
+\end{figure}
+
+This simulation process has several limitations: First of all, we only work on two of the clustering algorithms, so the simulation results could differ for other clustering algorithm. Secondly, we haven't proved that these two algorithms satisfy \textbf{Partial Consistency}, currently, it is only an assumption from simulation results, and mean to provide a direction for future study. Thirdly, our python implementation of $\Gamma$-transformation can only deal with distance matrix but not specific coordinates due to the limitation of computational resources.
+
+\section{Simulation results: Classification with SVM and other methods} \label{sec:Classification}
+
+
+
+
+
+
+
 
 
 
@@ -197,10 +305,16 @@ It is very important to specify what we are studying here:
 \appendix
 
 \section{Remaining Proof for Single-linkage} \label{app:proof}
-In this appendix, we provide the proof for \textit{Theorem 2.2} and  \textit{Theorem 2.3}.
+In this appendix, we provide the proof for \textit{Theorem \ref{second theorem}} and  \textit{Theorem \ref{third theorem}}.
+\begin{proof}
+\textit{theorem \ref{second theorem}}
 
+\noindent Given data set $S$ and distance function $d$, and $f$ be the single-linkage with k-clusters termination condition. 
 
-\section{Calculations for section \ref{sec:my1}} \label{app:calculations}
+Scale-Invariance of $f$ is easy to prove, suppose 
+\end{proof}
+
+\section{ Pyhton code } \label{app:calculations}
 
 In this appendix we verify equation \eqref{eq:myeq1}.
 

@@ -20,4 +20,27 @@ D~Manning Christopher, Raghavan Prabhakar, and Schutza Hinrich.
 Alex Williams.
 \newblock Is clustering mathematically impossible, 2015.
 
+\bibitem{meilua2003comparing}
+Marina Meil{\u{a}}.
+\newblock Comparing clusterings by the variation of information.
+\newblock In {\em Learning theory and kernel machines}, pages 173--187.
+  Springer, 2003.
+
+\bibitem{von2010clustering}
+Ulrike Von~Luxburg et~al.
+\newblock Clustering stability: an overview.
+\newblock {\em Foundations and Trends{\textregistered} in Machine Learning},
+  2(3):235--274, 2010.
+
+\bibitem{vinh2010information}
+Nguyen~Xuan Vinh, Julien Epps, and James Bailey.
+\newblock Information theoretic measures for clusterings comparison: Variants,
+  properties, normalization and correction for chance.
+\newblock {\em Journal of Machine Learning Research}, 11(Oct):2837--2854, 2010.
+
+\bibitem{hubert1985comparing}
+Lawrence Hubert and Phipps Arabie.
+\newblock Comparing partitions.
+\newblock {\em Journal of classification}, 2(1):193--218, 1985.
+
 \end{thebibliography}
