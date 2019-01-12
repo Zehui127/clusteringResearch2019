@@ -5,7 +5,7 @@
 \BOOKMARK [2][-]{subsection.2.1}{Priliminaries}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.2}{Missing Proofs for single linkage}{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.3}{Why modify the consistency property?}{section.2}% 7
-\BOOKMARK [1][-]{section.3}{Investigate the properties of -transformation by Simulation}{}% 8
+\BOOKMARK [1][-]{section.3}{A framework to investigate -transformation}{}% 8
 \BOOKMARK [2][-]{subsection.3.1}{Our approach}{section.3}% 9
 \BOOKMARK [2][-]{subsection.3.2}{Generate data points by -transformation}{section.3}% 10
 \BOOKMARK [2][-]{subsection.3.3}{Measure the difference between partition results}{section.3}% 11
@@ -13,7 +13,9 @@
 \BOOKMARK [2][-]{subsection.4.1}{Simulation for K-mediods}{section.4}% 13
 \BOOKMARK [2][-]{subsection.4.2}{Simulation for Complete Linkage}{section.4}% 14
 \BOOKMARK [2][-]{subsection.4.3}{Implication and limitation of the simulation}{section.4}% 15
-\BOOKMARK [1][-]{section.5}{Simulation results: Classification with SVM and other methods}{}% 16
-\BOOKMARK [1][-]{section.6}{Conclusions}{}% 17
-\BOOKMARK [1][-]{appendix.A}{Remaining Proof for Single-linkage}{}% 18
-\BOOKMARK [1][-]{appendix.B}{ Pyhton code }{}% 19
+\BOOKMARK [1][-]{section.5}{Prediction With Machine Learning methods}{}% 16
+\BOOKMARK [2][-]{subsection.5.1}{Approach}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.2}{Implementation and Experiment Results}{section.5}% 18
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 19
+\BOOKMARK [1][-]{appendix.A}{Remaining Proofs for Single-linkage}{}% 20
+\BOOKMARK [1][-]{appendix.B}{ Pyhton and Matlab code }{}% 21

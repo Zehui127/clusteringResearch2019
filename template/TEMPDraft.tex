@@ -9,11 +9,48 @@
 \usepackage{amsthm}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{algorithm,algcompatible}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+
+
+
+\DeclareMathOperator*{\argmax}{\arg\!\max}% https://tex.stackexchange.com/q/83169/5764
+\algnewcommand\INPUT{\item[\textbf{Input:}]}%
+\algnewcommand\OUTPUT{\item[\textbf{Output:}]}%
 % other packages that maybe of use include:
 % hyperref, amsthm, xy, todonotes, showkeys, ...
 \newtheorem{definition}{Definition}[section]
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}{Lemma}[theorem]
+
 % change to \PJS or \DIS or \HGDIS (for BSc and MPhil)
 % or \MSc (for all Msc dissertations)
 \PJA
@@ -128,6 +165,7 @@ For any $r>0$, and any $n>=2$, single-linkage with the distance-r termination co
 Here we present the proof of \textit{Theorem 2.1} and enclosed the proof of \textit{Theorem 2.2} and \textit{2.3} in the appendix A
 
 \begin{proof}
+\label{pf:myproof1}
 \textit{theorem \ref{first theorem}}
 
 \noindent Given data set $S$ and distance function $d$, let $\rho^* = \max_{i,j}d(i,j)$, and $f$ be the single-linkage with scale-$\alpha$ termination condition. 
@@ -136,7 +174,7 @@ Let's first prove that $f$ satisfy Scale-invariance property. Assume another dis
 
 Let's look inside $E$ and $E'$: Due to ``scale-$\alpha$" termination condition, edge Set $E$ will contain all the edges which has weights smaller than $\alpha\rho^*$. Formally, $d(e_i) <=\alpha\rho^*$, for $e_i\in E$; $d(e_j) > \alpha\rho^*$, for $e_j\notin E$. Similarly, $E'$ will only contain the edges which are smaller or equal to the ``threshold value", let's denote this value by $\rho_{2}^{*}$. So for $e_i \in E'$, $d'(e_i)<=\rho_{2}^{*}$, and for $e_j \notin E'$, $d'(e_j)>\rho_{2}^{*}$. But $d'(.) = \beta d(.)$ and $ \rho_{2}^{*} =  \max_{i,j}d'(i,j)= \max_{i,j}\beta d(i,j)=\beta \max_{i,j} d(i,j) =\beta\rho^*$. If we substitute the values of  $d'(e)$ and $\rho_{2}^{*}$ with $\beta d(e)$ and $\beta \rho^{*}$ in the inequality for $E'$, we will have $\beta d(e_i) <=\beta \alpha\rho^*$, for $e_i \in E'$, which is equivalent to the constraints for elements in $E$, thus $E'$ has the same elements as $E$, which indicate that $\Gamma = \Gamma'$, and we are done with the proof of Scale-invariance.
 
-The proof for richness much easier: Given a partition $\Gamma$, if we can construct a distance function $d$ such that $f(d) = \Gamma$, we are done. Let's assume we are given a partition $\Gamma = G_c(S,E)$, where $E = \{e_1,e_2,\ldots e_m\}$. To make $f$ produce such a edge set, we can define d as following: \[   
+The proof for richness is much easier: Given a partition $\Gamma$, if we can construct a distance function $d$ such that $f(d) = \Gamma$, we are done. Let's assume we are given a partition $\Gamma = G_c(S,E)$, where $E = \{e_1,e_2,\ldots e_m\}$. To make $f$ produce such a edge set, we can define d as following: \[   
 d(e_i) = 
      \begin{cases}
        \alpha^2, &\quad i\in\{1,2,3,\ldots m\} \\
@@ -147,7 +185,7 @@ In this manner, $\rho^{*} = \max_{i,j}d(i,j) = 1$, because \textit{theorem 2.1} 
 \end{proof}
 
 
-In this proof, we show how to prove Scale-invariance and Richness. The way to prove Consistency is somewhat similar to Scale-invariance, it starts from treating the partition $\Gamma$ as a partially connected Graph $G_c(S,E)$, then use the property of $f$ and the relation between $d$ and $d'$ to build the equivalence of two edge set $E$ and $E'$. The details are put in Appendix A.
+In this proof, we show how to prove Scale-invariance and Richness. The way to prove Consistency is somewhat similar to Scale-invariance, it starts from treating the partition $\Gamma$ as a partially connected Graph $G_c(S,E)$, then use the property of $f$ and the relation between $d$ and $d'$ to build the equivalence of two edge set $E$ and $E'$. The details are put in Appendix \ref{app:proof}.
 
 
 \subsection{Why modify the consistency property?} \label{subsec: motivation for modifying consistency}
@@ -173,7 +211,7 @@ The idea of consistency theorem is that after we apply $\Gamma$-transformation t
 Despite this seemingly reasonable assumption that $\Gamma$-transformation always keep the structure of the data the same, actually, in many cases (as \textit{Figure 2} shows), $\Gamma$-transformation will create undesirable transformation, in which the perturbed version of data should be clustered differently. For example, in (i), suppose we move one cluster infinitely away from other clusters, obviously it is a legitimate $\Gamma$-transformation, but the resulting data should be partitioned into  two clusters. However, consistency theorem, if hold, will require the clustering algorithm to produce three clusters as before. Similarly, in (ii), for each cluster, without breaking the constraints of $\Gamma$-transformation, if we shrink all the points together, but leave one points out, it should be more reasonable to partition the data in the way shown in \textit{Figure 2}.
 
 These problems with consistency theorem motivate us to study the property of $\Gamma$-transformation, try to figure out in which case does $\Gamma$-transformation change the structure of the data set.
-\section{Investigate the properties of $\Gamma$-transformation by Simulation} \label{sec:framework}
+\section{A framework to investigate $\Gamma$-transformation} \label{sec:framework}
 \subsection{Our approach} \label{subsec:approach}
 We are taking a numerical approach to investigate how $\Gamma$-transformation change the structure of the data. The general idea is that suppose we have a data set, we first apply some clustering algorithm on this data set, which produce a partition $\Gamma$. Then, we apply $\Gamma$-transformation to this data set for numerous times, and each time we will obtain a different data set. For a clustering algorithm which doesn't satisfy consistency property, if we apply the algorithm to these data sets, it should produce different partition results. We want to figure out what kind of $\Gamma$-transformation will result in partitions which are the same as the partition $\Gamma$ . To decide whether two partition results are the same, we need have some ``measurement", which could measure the difference between two partition, we will discuss various criteria to measure this difference in the third sub-section.
 
@@ -220,6 +258,27 @@ In the simulation, we write our Rand Index function, but make use of the \textbf
 
 \section{Simulation Results} \label{sec:red}
 Following the framework proposed in section \ref{subsec:blue}, below is the simulation we did for investigating the property of $\Gamma$-transformation: We start from the original dataset, represented by distance matrix $X$, then let $\Gamma = f(X)$, where $f$ is the selected clustering algorithm we want to study. Apply $\Gamma$-transformation on $X$ for multiple times to get the perturbed version of dataset $D = \{X_1',X_2'\ldots X_n'\}$. Applying $f$ to every element of $D$ will result in a set of partitions $P = \{f(X_1'),f(X_2')\ldots f(X_n')\}=\{\Gamma_1',\Gamma_2' \ldots \Gamma_n' \}$. Finally, we calculate corresponding Adjusted Rand Index(ARI) for each of these partitions $\{ARI(\Gamma_1',\Gamma),ARI(\Gamma_2',\Gamma)\ldots ARI(\Gamma_n',\Gamma)\}$. \textit{Table-1} present the psudo-code for the simulation steps.
+
+\begin{algorithm}
+    \caption{Simulation Process}
+  \begin{algorithmic}[1]
+    \INPUT Iteration time $n$, Clustering function $f$, Initial distance matrix $d_{origin}$
+    \OUTPUT A Set containing $n$ Adjusted Rand Index $\{ARI_1,ARI_2\ldots ARI_n\}$, where $ARI_i = ARI(f(d_i),f(d_{origin}))$
+	\STATE $i=1$    
+    \STATE $\Gamma = f(d_{origin})$
+    \WHILE{$i \leq n$}
+      \STATE $d_i=\Gamma$-transformation$(d_{origin})$
+      \STATE $\Gamma_i=f(d_i)$
+      \STATE $ARI_i =$ AdjustedRandIndex$(\Gamma_i,\Gamma)$
+      \STATE $i = i + 1$
+    \ENDWHILE
+  \end{algorithmic}
+\end{algorithm}
+
+
+
+
+
 \subsection{Simulation for K-mediods} \label{subsec: kmediods}
 
 
@@ -277,20 +336,38 @@ Recall the original consistency property, it is actually a special case of $\bet
 
 \begin{figure}[H]
  \begin{center}
-   \includegraphics[width=1\textwidth]{Complete-linkage-cdf.png}
+   \includegraphics[width=0.7\textwidth]{convergence.png}
  \end{center}
- \caption{\textit{Change of the relative frequency of ARI = 1:Y-axis shows \textbf{relative frequency of} $1$ = $\frac{\textsl{Frequency of ARI}=1}{\textsl{Total number of cases}} $ for Complete-linkage algorithm, x-axis shows the value of n. As n increase, this value tend to a fixed value=0.78.}}
+ \caption{\textit{Change of the relative frequency of ARI = 1. Y-axis shows \textbf{relative frequency of} $1$ = $\frac{\textsl{Frequency of ARI}=1}{\textsl{Total number of cases}} $ for Complete-linkage algorithm; X-axis shows the value of n. As n increase, this value tend to a fixed value$=0.74$.}}
  \label{fig:single-linkage4}
 \end{figure}
 
 This simulation process has several limitations: First of all, we only work on two of the clustering algorithms, so the simulation results could differ for other clustering algorithm. Secondly, we haven't proved that these two algorithms satisfy \textbf{Partial Consistency}, currently, it is only an assumption from simulation results, and mean to provide a direction for future study. Thirdly, our python implementation of $\Gamma$-transformation can only deal with distance matrix but not specific coordinates due to the limitation of computational resources.
 
-\section{Simulation results: Classification with SVM and other methods} \label{sec:Classification}
+\section{Prediction With Machine Learning methods} \label{sec:Classification}
 
 
+For the clustering algorithm without consistency, in many cases, they can still produce the same partition on the perturbed dataset(perturbation means $\Gamma$-transformation). We would like to know when these clustering algorithm could produce the same partition. Put it more formally, the problem is: Give $d'$ is the $\Gamma$-transformation of $d$, and particular clustering algorithm $f$, we would like to know whether $f(d)=f(d')$ holds without calculating $f(d)$ and $f(d')$. How can we do that? We solve this problem by regarding it as a canonical classification task in machine learning setting. Details of model building and model evaluation are given in the following subsections, here we first state the application this method.
 
+Suppose we have a lot of datasets $\{d_1,d_2\ldots d_n\}$which need to be processed by a clustering algorithm, we know that all of these datasets are the $\Gamma$-transformation of Dataset $d$, the clustering algorithm don't satisfy consistency property, but satisfy Partial Consistency. By the assumption we made in section \ref{sec:red}, we know that many datasets will have the same  partition results as dataset $d$, if we have a classifier $C$, and it can tell us which dataset $d_i$ will have the same partition results as $d$, then we can skip these datasets. In this manner, we will save a lot of time and computation resources. Note, what motivate us to do this is the Partial Consistency assumption, if only a small amount of datasets have the same partition results as $d$, we will not bother using learning algorithm to train this model.
 
+\subsection{Approach} 
+\label{subsec:approach}
+This method make use of the simulation process from \textit{Section 4} to generate data. Given clustering algorithm $f$ and initial dataset $d$, we can use the simulation process to generate multiple $\Gamma$-transformation of $d$: $\{d_1,d_2\ldots d_n\}$, then calculate corresponding Adjusted Rand Index:$\{ARI(f(d_1),f(d)),$ $ARI(f(d_2),f(d))
+\ldots  ARI(f(d_n),f(d))\}$. Now we have each pair $(d_i,ARI_i)$ as a training sample, to make it a classification problem, we convert the Adjusted Rand Index to Binary label using $\eta$ function, which is defined as following:
+\[   
+\eta(x) = 
+     \begin{cases}
+       0, &\quad x<1 \\
+       1, &\quad x = 1 \\
+     \end{cases}
+\]
+So formally, we have the training set $\{(d_1,\eta(ARI_1)),(d_2,\eta(ARI_2))\ldots (d_n,\eta(ARI_n))\}$. By fitting these data to learning algorithms, we can obtain different classifiers. 
 
+We don't go into the details about learning algorithms, we use decision tree, Support Vector Machine and Random Forest in this paper, which are all standard algorithms used in industry for small dataset.
+
+\subsection{Implementation and Experiment Results} 
+\label{subsec:Experiment}
 
 
 
@@ -304,19 +381,164 @@ This simulation process has several limitations: First of all, we only work on t
 
 \appendix
 
-\section{Remaining Proof for Single-linkage} \label{app:proof}
+\section{Remaining Proofs for Single-linkage} \label{app:proof}
 In this appendix, we provide the proof for \textit{Theorem \ref{second theorem}} and  \textit{Theorem \ref{third theorem}}.
 \begin{proof}
 \textit{theorem \ref{second theorem}}
 
-\noindent Given data set $S$ and distance function $d$, and $f$ be the single-linkage with k-clusters termination condition. 
+\noindent Given data set $S$ and distance function $d$, and $f$ be the single-linkage with k-clusters termination condition. Scale-Invariance of $f$ is easy to prove, suppose another distance function $d'$ satisfies
+\begin{equation}
+\label{eq: myeq2.1}
+	\forall i,j \in S, d'(i,j)=\beta d(i,j), \textsl{where} \beta >0
+\end{equation}
+Following the same idea of proof \ref{pf:myproof1}, Let 
+\begin{equation}
+\label{eq: myeq2.2}
+\Gamma = f(S,d) = G_c(S,E)
+\end{equation}
+\begin{equation}
+\Gamma' = f(S,d') = G_c'(S,E')
+\end{equation}
+If we can prove that edge sets $E=E'$, then $\Gamma = \Gamma'$ and scale invariance is proved.  
+\begin{equation}
+E = \{e_1,e_2\ldots e_m\}
+\end{equation}
+One key property of single linkage is that 
+\begin{equation}
+ d(e_i)<=d(e_k), \textsf{for } \forall e_i\in E, e_k\in E^\complement
+\end{equation}
+On the other hand, $E'$ is created by picking element with minimum  $d'(e)$ until k clusters are formed. By Equation \ref{eq: myeq2.1}, we have  
+ \begin{equation}
+ d'(e_i)<=d'(e_k), \textsf{for } \forall e_i\in E, e_k\in E^\complement
+\end{equation}
+So all the edges in $E$ have to be included in $E'$, and at this point, k clusters are formed, so the algorithm has to terminate. Thus, $E'$ contains the exactly the same elements as $E$, which means Scale-Invariance is proved.
 
-Scale-Invariance of $f$ is easy to prove, suppose 
+The proof for consistency is more subtle. We first need to define what do we mean by equivalent Edge sets.
+\begin{definition}
+two edge sets $E_1$ and $E_2$ are equivalent $\iff$ $E_1$ and $E_2$ represent the same partition to the dataset. 
+\end{definition}
+Here is a example, in figure-\ref{fig:proof2}, $E_1=\{e_1,e_2,e_8,e_9\}$ and $E_2=\{e_2,e_5,e_7,e_8\}$ are \textbf{equivalent}, because both of them represent the same partition $\Gamma = \{\{1,2,3\},\{4,5,6\}\}$. 
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=0.6\textwidth]{proof.png}
+ \end{center}
+ \caption{\textit{$E_1$ and $E_2$ are two equivalent Edges sets}}
+ \label{fig:proof2}
+\end{figure}
+Let $d''$ be the $\Gamma$-transformation of original distance function $d$, and $\Gamma_2 =f(S,d'') =G_c(S,E'')$. If we can prove that $E$ and $E''$ are a equivalent, then we will be able to prove $\Gamma'' = \Gamma$, thus the consistency of $f$.  With k-clusters termination condition, $f$ will continue to pick the edges with small weight until k sub-graphs $\{G_1^{sub},G_2^{sub}\ldots G_k^{sub}\}$are formed. Then all the edges can be classified into two groups: in the first group, the edges connect two nodes within the same sub-graph; in the second group, the edges connect two nodes belongs to different sub-graphs. Formally,
+\begin{equation}
+M = \{(i,j)|i,j\in G_l^{sub}\}
+\end{equation}
+\begin{equation}
+M^\complement = \{(i,j)|i\in G_{l_1}^{sub},i\in G_{l_2}^{sub}\}
+\end{equation}
+Let $E=\{e_1,e_2\ldots e_m\}$, then we have $E\subseteqq M$ and 
+\begin{equation}
+\label{eq:cons1}
+d(e_i)<=d(e_j), \quad \forall e_i\in E, e_j\notin E
+\end{equation}
+After the $\Gamma$-transformation, we will have 
+\begin{equation}
+\label{eq:cons2}
+ d''(e_i)  >= d(e_i), \quad \forall e_i \notin M 
+\end{equation}
+Combine equation \ref{eq:cons1} and \ref{eq:cons2} we have 
+\begin{equation}
+\label{eq:cons3}
+d''(e_i)>=d'(e_j),\quad \forall e_i \notin M, e_j\in E
+\end{equation}
+$E''$ will pick edges with small weight to include, but equation \ref{eq:cons3} indicate that edges which are not in $M$(the edges between clusters), can never be selected, because the by the time these edges are selected, the edges in $E$ either have been all included in $E''$, in that case, there are k clusters are formed, the selection process terminate,so $E=E''$, or the selection process terminate earlier, in this latter case, because no edges between the clusters are selected, $E''$ and $E$ have to be the equivalent Edges set to form k sub-graphs. Thus $\Gamma = \Gamma''$. The consistency is proved.
 \end{proof}
 
-\section{ Pyhton code } \label{app:calculations}
+\begin{proof}
+\textit{theorem \ref{third theorem}}
 
-In this appendix we verify equation \eqref{eq:myeq1}.
+We first prove richness, for a given Partition $\Gamma = G_c(S,E)$, where $E={e_1,e_2\ldots e_m}$. To make $f$ produce such a Edge set, we can simply define d as following:
+
+\[   
+d(e_i) = 
+     \begin{cases}
+       r, &\quad i\in\{1,2,3,\ldots m\} \\
+       r+1, &\quad i\notin\{1,2,3,\ldots m\} \\
+     \end{cases}
+\]
+Let $f(d) = G(S,E_{new})$. Because $f$ is the single-linkage with distance-r termination condition, it will put all the edges of weight smaller or equal to $r$ into Edge set, so $E_{new} = \{e_1,e_2\ldots d_m\} = E$
+
+To prove the consistency of $f$, we can follow the same idea as we did in last proof. For Edges in $E$, we have 
+\begin{equation}
+d(e_i)>r, \quad \forall e_i\notin E
+\end{equation}
+And because of equation \ref{eq:cons3}, we have 
+
+\begin{equation}
+d''(e_i)>=d(d_i)>r \quad \forall e_i\notin M
+\end{equation}
+So these Edges connecting between the clusters can never be included in the Edge Set, On the other hand, we have 
+\begin{equation}
+d''(e_j)<=d(e_j)<=r \quad \forall e_i\notin E
+\end{equation}
+So $E$ have to at least include these edges, which form the same clusters as $\Gamma$, and whether or not include the other inter-connected edges will in $E''$ will not change the fact that $E''$ and $E$ are equivalent Edge set. So $\Gamma''=\Gamma$, we prove the consistency.
+ 
+\end{proof}
+
+\section{ Pyhton and Matlab code } \label{app:calculations}
+Below is the code for $\Gamma$-transformation. We also enclose the matlab code for fitting the data to Gamma-distribution
+\begin{lstlisting}[language=Python, caption=$\Gamma$-transformation()]
+import numpy as np
+import random
+from math import factorial
+# take the similarity matrix, partition result
+def perturb_distance_matrix(in_matrix,partition):
+    matrix = np.matrix.copy(in_matrix)
+    #take the index of first,second ... cluster
+    partition_list = list()
+    for i in np.unique(partition):
+        index_i = np.where(partition==i)
+        if len(index_i[0])!=1:
+            #In one cluster: Randomly select the x pair of points
+            temp_upper_bound = factorial(len(index_i[0]))/(factorial(len(index_i[0])-2)*2)
+            loop_time = random.randint(1,temp_upper_bound+1)
+            #Randomly reduce the distance between each pair
+            for j in range(1,loop_time+1):
+                pair = np.random.choice(index_i[0],2,False)
+                matrix[pair[0],pair[1]]=  matrix[pair[1],pair[0]]= random.uniform(0, 1)*matrix[pair[1],pair[0]]
+            #store the partition into the list
+        partition_list.append(index_i[0])
+    #Ramdonmly select x' pair of clusters
+    temp_upper_bound = factorial(len(partition_list))/(factorial(len(partition_list)-2)*2)
+    loop_time = random.randint(1,temp_upper_bound+1)
+    #increate the distance between clusters with a random ratio
+    for i in range(1,loop_time+1):
+        cluster_pair = random.sample(partition_list,2)
+        #create a ramdom generated matrix - then do elementwise multiplication
+        increase_coefficient = np.multiply((np.random.rand(cluster_pair[0].shape[0],cluster_pair[1].shape[0])+1),(np.random.randint(4,size=(cluster_pair[0].shape[0],cluster_pair[1].shape[0]))+1))
+        temp_multiplier = np.multiply(matrix[np.ix_(cluster_pair[0],cluster_pair[1])],increase_coefficient)
+        matrix[np.ix_(cluster_pair[0],cluster_pair[1])]= temp_multiplier
+       # the points are symmetric to each other, so do the corresponding changes
+        matrix[np.ix_(cluster_pair[1],cluster_pair[0])] = np.matrix.transpose(temp_multiplier)
+
+    return matrix
+\end{lstlisting}
+\begin{lstlisting} [language=Matlab, caption=fitting the data to $\Gamma$ distribution]
+% Fit gamma pdf to data
+data = table2array(foo)
+ab   = gamfit(data);
+% Write the functional form of the pdf with the estimated parameters
+a    = ab(1);
+b    = ab(2);
+gpdf = @(x) x.^(a-1)/(b^a*gamma(a)).*exp(-x/b);
+% Plot the fitted pdf and the data
+x    = 0:0.01:2;
+
+plot(x,gpdf(x),'-g',data,gpdf(data),'*r',x,gamcdf(x,a,b),'--blue')
+xx=xlabel('Adjusted Rand Index')
+xx.FontSize = 20;
+yy=ylabel('Density/Probability')
+yy.FontSize = 20;
+lgd=legend('Theoretical pdf','Data','Theoretical cdf')
+lgd.FontSize = 20;
+\end{lstlisting}
+
 
 \newpage
 
