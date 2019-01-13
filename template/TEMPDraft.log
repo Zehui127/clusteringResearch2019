@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.18)  12 JAN 2019 00:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.18)  13 JAN 2019 22:13
 entering extended mode
 **./TEMPDraft.tex
 (TEMPDraft.tex
@@ -703,20 +703,20 @@ LaTeX Warning: Label `subsec:approach' multiply defined.
 )
 \openout1 = `TEMPDraft.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -779,7 +779,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring OFF on input line 76.
+Package hyperref Info: Link coloring OFF on input line 77.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -789,9 +789,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count140
 )
-LaTeX Info: Redefining \ref on input line 76.
-LaTeX Info: Redefining \pageref on input line 76.
-LaTeX Info: Redefining \nameref on input line 76.
+LaTeX Info: Redefining \ref on input line 77.
+LaTeX Info: Redefining \pageref on input line 77.
+LaTeX Info: Redefining \nameref on input line 77.
 
 (TEMPDraft.out) (TEMPDraft.out)
 \@outlinefile=\write3
@@ -801,23 +801,26 @@ LaTeX Info: Redefining \nameref on input line 76.
 \my@gap=\skip53
  [1
 
-{C:/Users/ljh/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] (TEMPDraf
-t.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 3.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+{C:/Users/ljh/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Try loading font information for U+msa on input line 82.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 3.
-
+LaTeX Font Info:    Try loading font information for U+msb on input line 82.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))
+)
+Overfull \hbox (22.31065pt too wide) in paragraph at lines 82--83
+\OT1/cmr/m/n/12 Various Clus-ter-ing Al-go-rithm are usu-ally stud-ied in-de-pe
+n-dently, how-ever, in 2003, Kleinberg[[]]
+ []
+
+[2] (TEMPDraft.toc)
 \tf@toc=\write4
 \openout4 = `TEMPDraft.toc'.
 
  [3]
-Underfull \hbox (badness 10000) in paragraph at lines 90--92
+Underfull \hbox (badness 10000) in paragraph at lines 92--94
 
  []
 
@@ -837,24 +840,22 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 144.
  [8] [9]
-<Paper_figure_1.png, id=177, 737.75626pt x 309.40594pt>
+<Paper_figure_1.png, id=174, 737.75626pt x 309.40594pt>
 File: Paper_figure_1.png Graphic file (type png)
 <use Paper_figure_1.png>
 Package pdftex.def Info: Paper_figure_1.png  used on input line 197.
 (pdftex.def)             Requested size: 341.43307pt x 143.19243pt.
- [10]
-<Paper_figure_2.png, id=185, 696.35156pt x 613.54219pt>
+<Paper_figure_2.png, id=176, 696.35156pt x 613.54219pt>
 File: Paper_figure_2.png Graphic file (type png)
 <use Paper_figure_2.png>
 Package pdftex.def Info: Paper_figure_2.png  used on input line 205.
 (pdftex.def)             Requested size: 295.90588pt x 260.71921pt.
-
+ [10 <./Paper_figure_1.png>]
 Overfull \hbox (9.62552pt too wide) in paragraph at lines 211--212
 \OT1/cmr/m/n/12 struc-ture of the data the same, ac-tu-ally, in many cases (as 
 \OT1/cmr/m/it/12 Fig-ure 2 \OT1/cmr/m/n/12 shows), $ $-transformation
  []
 
-[11 <./Paper_figure_1.png> <./Paper_figure_2.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 214.
@@ -867,6 +868,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 214.
 
+[11 <./Paper_figure_2.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 220.
@@ -885,94 +887,93 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 238.
 
-[14]
-<adjusted.png, id=222, 433.62pt x 289.08pt>
+<adjusted.png, id=208, 433.62pt x 289.08pt>
 File: adjusted.png Graphic file (type png)
 <use adjusted.png>
 Package pdftex.def Info: adjusted.png  used on input line 252.
 (pdftex.def)             Requested size: 182.09486pt x 121.39511pt.
- [15 <./adjusted.png>]
+[14]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 263.
-<simulate1.png, id=232, 722.7pt x 289.08pt>
+put line 264.
+<simulate1.png, id=220, 722.7pt x 289.08pt>
 File: simulate1.png Graphic file (type png)
 <use simulate1.png>
-Package pdftex.def Info: simulate1.png  used on input line 288.
+Package pdftex.def Info: simulate1.png  used on input line 289.
 (pdftex.def)             Requested size: 318.66948pt x 127.46907pt.
- [16]
-<simulate2.png, id=238, 1445.4pt x 1445.4pt>
+ [15 <./adjusted.png>] [16]
+<simulate2.png, id=232, 1445.4pt x 1445.4pt>
 File: simulate2.png Graphic file (type png)
 <use simulate2.png>
-Package pdftex.def Info: simulate2.png  used on input line 297.
+Package pdftex.def Info: simulate2.png  used on input line 298.
 (pdftex.def)             Requested size: 318.66948pt x 318.67268pt.
- [17 <./simulate1.png>] [18 <./simulate2.png>]
-<simulate2_1.png, id=257, 722.7pt x 433.62pt>
+ [17 <./simulate1.png> <./simulate2.png>]
+<simulate2_1.png, id=245, 722.7pt x 433.62pt>
 File: simulate2_1.png Graphic file (type png)
 <use simulate2_1.png>
-Package pdftex.def Info: simulate2_1.png  used on input line 313.
+Package pdftex.def Info: simulate2_1.png  used on input line 314.
 (pdftex.def)             Requested size: 318.66948pt x 191.20361pt.
-<Complete-linkage-cdf.png, id=258, 1445.4pt x 724.20563pt>
+<Complete-linkage-cdf.png, id=246, 1445.4pt x 724.20563pt>
 File: Complete-linkage-cdf.png Graphic file (type png)
 <use Complete-linkage-cdf.png>
-Package pdftex.def Info: Complete-linkage-cdf.png  used on input line 321.
+Package pdftex.def Info: Complete-linkage-cdf.png  used on input line 322.
 (pdftex.def)             Requested size: 455.24411pt x 228.09282pt.
 
-[19 <./simulate2_1.png> <./Complete-linkage-cdf.png (PNG copy)>]
-<convergence.png, id=267, 1084.05pt x 722.7pt>
+[18 <./simulate2_1.png>] [19 <./Complete-linkage-cdf.png (PNG copy)>]
+<convergence.png, id=262, 1084.05pt x 722.7pt>
 File: convergence.png Graphic file (type png)
 <use convergence.png>
-Package pdftex.def Info: convergence.png  used on input line 339.
+Package pdftex.def Info: convergence.png  used on input line 340.
 (pdftex.def)             Requested size: 318.66948pt x 212.44478pt.
- [20] [21 <./convergence.png>] [22] [23]
-<proof.png, id=296, 512.91624pt x 256.96pt>
+ [20 <./convergence.png>] [21] [22]
+<posterDiscussion.png, id=284, 1445.4pt x 722.7pt>
+File: posterDiscussion.png Graphic file (type png)
+<use posterDiscussion.png>
+Package pdftex.def Info: posterDiscussion.png  used on input line 380.
+(pdftex.def)             Requested size: 318.66948pt x 159.33633pt.
+ [23 <./posterDiscussion.png>] [24]
+<proof.png, id=302, 512.91624pt x 256.96pt>
 File: proof.png Graphic file (type png)
 <use proof.png>
-Package pdftex.def Info: proof.png  used on input line 423.
+Package pdftex.def Info: proof.png  used on input line 438.
 (pdftex.def)             Requested size: 273.14923pt x 136.84293pt.
- [24] [25 <./proof.png>]
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+ [25] [26 <./proof.png>] ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstla
+ng1.sty"
 File: lstlang1.sty 2018/09/02 1.7 listings language file
-) [26]
+) [27]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 486.
+nput line 501.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 499.
- [27]
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 514.
+
+[28] ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2018/09/02 1.7 listings language file
-) [28]
+) [29]
 (TEMPDraft.bbl
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 32.
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 548.
- [29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 548.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 563.
+ [30]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 563.
  (TEMPDraft.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 548.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 548.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 563.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 563.
+Package rerunfilecheck Info: File `TEMPDraft.out' has not changed.
+(rerunfilecheck)             Checksum: 6A47959074D60DB7A48F3A8DCF238AE0;1382.
 
-
-Package rerunfilecheck Warning: File `TEMPDraft.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `TEMPDraft.out':
-(rerunfilecheck)             Before: 9F653BC3644FCECFD95F138642D7E317;1512
-(rerunfilecheck)             After:  F7419EB9FFC9AE349215D47C7ABAA608;1512.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 548.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 563.
  ) 
 Here is how much of TeX's memory you used:
- 10557 strings out of 493305
- 144547 string characters out of 3138880
- 571910 words of memory out of 3000000
- 13797 multiletter control sequences out of 15000+200000
+ 10563 strings out of 493305
+ 144658 string characters out of 3138880
+ 572015 words of memory out of 3000000
+ 13799 multiletter control sequences out of 15000+200000
  18319 words of font info for 68 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,13n,42p,1466b,2042s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,13n,42p,1601b,2042s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program 
 Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/Mi
@@ -992,9 +993,9 @@ amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:
 /Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on TEMPDraft.pdf (29 pages, 693375 bytes).
+Output written on TEMPDraft.pdf (30 pages, 745173 bytes).
 PDF statistics:
- 500 PDF objects out of 1000 (max. 8388607)
- 152 named destinations out of 1000 (max. 500000)
- 214 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 506 PDF objects out of 1000 (max. 8388607)
+ 155 named destinations out of 1000 (max. 500000)
+ 203 words of extra memory for PDF output out of 10000 (max. 10000000)
 

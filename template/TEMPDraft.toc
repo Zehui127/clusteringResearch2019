@@ -1,22 +1,22 @@
 \babel@toc {english}{}
 \contentsline {section}{\numberline {1}Introduction}{4}{section.1}
-\contentsline {subsection}{\numberline {1.1}Related work}{5}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Our contribution}{5}{subsection.1.2}
 \contentsline {section}{\numberline {2}Review of Kleiberg's work}{5}{section.2}
-\contentsline {subsection}{\numberline {2.1}Priliminaries}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.1}Priliminaries}{5}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Missing Proofs for single linkage}{7}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Why modify the consistency property?}{10}{subsection.2.3}
 \contentsline {section}{\numberline {3}A framework to investigate $\Gamma $-transformation}{12}{section.3}
 \contentsline {subsection}{\numberline {3.1}Our approach}{12}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Generate data points by $\Gamma $-transformation}{13}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Measure the difference between partition results}{14}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.2}Generate data points by $\Gamma $-transformation}{12}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Measure the difference between partition results}{13}{subsection.3.3}
 \contentsline {section}{\numberline {4}Simulation Results}{15}{section.4}
-\contentsline {subsection}{\numberline {4.1}Simulation for K-mediods}{16}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.1}Simulation for K-mediods}{15}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Simulation for Complete Linkage}{18}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Implication and limitation of the simulation}{20}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.3}Implication and limitation of the simulation}{19}{subsection.4.3}
 \contentsline {section}{\numberline {5}Prediction With Machine Learning methods}{21}{section.5}
-\contentsline {subsection}{\numberline {5.1}Approach}{22}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Implementation and Experiment Results}{23}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.1}Approach}{21}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Implementation and Experiment Results}{22}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}Data Preprocessing}{22}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Results}{22}{subsubsection.5.2.2}
 \contentsline {section}{\numberline {6}Conclusions}{23}{section.6}
-\contentsline {section}{\numberline {A}Remaining Proofs for Single-linkage}{24}{appendix.A}
-\contentsline {section}{\numberline {B} Pyhton and Matlab code }{27}{appendix.B}
+\contentsline {section}{\numberline {A}Remaining Proofs for Single-linkage}{25}{appendix.A}
+\contentsline {section}{\numberline {B} Pyhton and Matlab code }{28}{appendix.B}
