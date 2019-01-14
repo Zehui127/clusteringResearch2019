@@ -43,4 +43,11 @@ Lawrence Hubert and Phipps Arabie.
 \newblock Comparing partitions.
 \newblock {\em Journal of classification}, 2(1):193--218, 1985.
 
+\bibitem{cohen2018clustering}
+Vincent Cohen-Addad, Varun Kanade, and Frederik Mallmann-Trenn.
+\newblock Clustering redemption--beyond the impossibility of kleinberg’s
+  axioms.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  8526--8535, 2018.
+
 \end{thebibliography}
